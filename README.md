@@ -18,6 +18,7 @@
     1. monitor ดูแลระบบ cluster
     2. OSD อ่าน/เขียน ตามคำสั่ง
     3. MDS ดูแลสถานะของ file hierarchy
-
+     อ้างอิง https://www.throughwave.co.th/2017/04/10/%E0%B9%81%E0%B8%99%E0%B8%B0%E0%B8%99%E0%B8%B3-ceph-storage-distributed-storage-%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88/
 6. NFS เป็น Protocol ที่ช่วยให้ computer แชร์ข้อมูลผ่าน network ได้ โครงสร้างเป็น Server และ Client ทำให้ computer ใน network เดียวกันเข้าถึงข้อมูลได้ โดยฝั่ง server สามารถตั้งค่าได้ว่า ไฟล์ไหนสามารถแชร์หากันได้ ฝั่ง client ต้อง mount ไฟล์ผ่าน network โดยใช้คำสั่ง mount
+      อ้างอิง https://blog.cloudhm.co.th/nfs-vs-smb/
                       
