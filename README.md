@@ -1,26 +1,26 @@
 # SPCN-012
 # 1. Hypervisor Technology 
-VMM ระบบที่ทำให้คอมพิวเตอร์หลายเครื่องใช้งานฮาร์ดแวร์ตัวเดียวกันได้ ใช้ประโยชน์ได้สูงสุด จำลองระบบปัฏิบัติการ แบบมัลติคอร์มัลติเธรด และ Ram จำนวนมาก เหมาะสำหรับเมนเฟรมมากกว่า windown OS เพราะ Hypervisor จัดการหลายระบบได้เหมือนกับ Host มี 2 ประเภท
-      
-- Hypervisor Type 1 (Baremetal Architectur) ทำงานโดยตรงกับฮาร์ดแวร์ของเซิร์ฟเวอร์ ตัวอย่างได้แก่ VMware ESXi
-- Hypervisor Type 2 (Hosted Architecture) ทำหน้าที่เป็นซอฟต์แวร์ เป็นเครื่องเสมือน ต้องการใช้ฮาร์ดแวร์ต้องผ่านระบบปฏิบัติการก่อน จะจำลองเสมือนได้มีประสิทธิภาพสูงสุด ตัวอย่างได้แก่ VMware Server
+คือ ระบบที่จำลองให้ระบบปฏิบัติการหลายระบบทำงานพร้อมกันบน host เดียวกันได้ ไม่ให้เกิดการทับซ้อน เป็นระบบแบบมัลติคอร์มัลติเธรต หรือ เรียกอีกชื่อว่า VMM สามารถสร้างและลบได้ตามต้องการ เป็นตัวจำลอง Hardware ให้ VM
+ประโยชน์ 
+- ความปลอดภัยในการทดสอบระบบ มีไวรัสจะไม่ส่งผลต่อเครื่องของเรา
+ 
+- Hypervisor Type 1 (Baremetal Architectur) เป็น Hypervisor ที่ทำงานบนฮาร์ดแวร์ เปรียบเสมือนทำให้ตัวเครื่องคอมพิวเตอร์จำลอง OS ได้หลายตัว ใช้งาน Hardware ของเครื่องโดยตรง
+- Hypervisor Type 2 (Hosted Architecture) เป็น Hypervisor ที่ทำงานบนฮาร์ดแวร์ เปรียบเสมือนทำให้ตัวเครื่องคอมพิวเตอร์จำลอง OS ได้หลายตัว ใช้งาน Hardware ของเครื่องโดยตรง
 
 ประโยชน์ คือ มีความปลอดภัย สามารถทดสอบซอฟแวร์ได้ ลดความเสี่ยงต่อตัวคอมพิวเตอร์ ลดต้นทุน ใช้พลังงานน้อยลง จะไม่ส่งผลกระทบต่อตัวเครื่อง ช่วยให้ข้อมูลปลอดภัย 
 
-อ้างอิง https://personet.co.th/hypervisor/
+อ้างอิง 
+- https://personet.co.th/hypervisor/
+- https://arnondora.in.th/what-is-virtual-machine/
     
 # 2. Container Technology 
-เปรียบเสมือนตู้ Containers ที่อยู่บนเรือที่สามารถยกเข้า/ออกได้ สิ่งที่ Infrastructure ต้องเตรียมสำหรับรองรับ Container คือ 
-
-- Infrastructure : โครงสร้างพื้นฐาน
-- Host Operation System : เป็น OS ที่ติดตั้งบน server เป็น Windows หรือ Linux  
-- Container Runtime : เป็น Command Line สำหรับ Brand
-- Binary/Library : ชุดข้อมูล
-- Application : Software ให้ user ใช้งาน
-
-จะติดตั้งอยู่บน Host OS ใช้ OS ร่วมกันได้ ทำให้มีขนาดไม่ใหญ่ ประหยัด Resource แก้ปัญหาใน OS เดียวได้ ไว้จำลองการรันโปรแกรมจากหลายช่องทาง ไม่จำเป็นต้องมี Operating System image สามารถ deploy Application ไป OS และ Hardware อื่นได้ มีประสิทธิภาพการทำงานที่ดี เวลาบูตน้อย
+ระบบที่ทำการรวบรวม library หรือ binary ที่จำเป็นในการรันแอปพลิเคชันนั้นไว้แล้ว โดยสามารถนำไปใช้งานได้ทุกระบบปฏิบัติการ ง่ายต่อการโยกย้าย การ boot ระบบที่เร็วกว่า VMM ใช้พื้นที่น้อยกว่า เพราะไม่ต้องสร้างระบบที่รองรับแอปพลิเคชั่นขึ้นมาใหม่ เปรียบเสมือน ตู้ Container ที่เก็บทุกอย่างไว้หมดแล้ว สามารถนำใช้งานได้เลย ติดตั้งอยู่บน Host OS เพื่อให้เรียกใช้งานในระบบอื่นได้
     
-อ้างอิง https://blog.cloudhm.co.th/containers-vs-vm/
+อ้างอิง 
+- https://blog.cloudhm.co.th/containers-vs-vm/
+- https://aws.amazon.com/th/what-is/containerization/
+- https://www.blognone.com/node/105928
+- https://www.mindphp.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD/73-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3/9187-containers.html
     
 # 3. Monolithic MicroService 
 - Monolithic คือ สถาปัตยกรรมที่นิยมใช้กัน ส่วนต่างๆถูกเขียนที่สภาพแวดล้อมเดียวกัน ฐานข้อมูลเดียวกัน เช่น การทำเว็บ 
