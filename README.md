@@ -21,8 +21,7 @@
 - https://www.mindphp.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD/73-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3/9187-containers.html
     
 # 3. Monolithic MicroService 
-- Monolithic คือ สถาปัตยกรรมที่นิยมใช้กัน ส่วนต่างๆถูกเขียนที่สภาพแวดล้อมเดียวกัน ฐานข้อมูลเดียวกัน เช่น การทำเว็บ 
-
+- Monolithic คือ ระบบที่ทำงานในสภาพแวดล้อมเดียวกัน ทุกส่วนประกอบทำงานด้วยกัน ใช้ฐานข้อมูลเดียวกัน อยู่ในก้อนเดียวกัน
 ประโยชน์ 
 1. ง่ายต่อการพัฒนา Application ถูกเขียนในสภาพแวดล้อมเดียวกัน
 2. ง่ายต่อการ Deploy เพราะแต่ส่วนถูกมัดรวมกัน การ Deploy จึงง่ายในการนำโค้ด ไปยังตัว web server และตัว database
@@ -34,19 +33,32 @@
 3. แก้ไขส่วนใด อาจส่งผลต่อส่วนอื่น
 4. ย้าย framework ยาก
       
-- MicroService คือ สถาปัตนกรรมที่วางโครงสร้างเป็นชุดๆในลักษณะ loosely coupled หรือมีความ Independence โดยจะทำหน้าที่แยกส่วนต่างๆ ออกมาเป็นคอลเล็กชั่น ทำให้แต่ละส่วนทำงานในส่วนของตัวเองได้ ไม่ยึดติดมากนัก
+- MicroService คือ ระบบที่แยกส่วนประกอบในการทำงานกัน โดยจะแบ่งตามจุดประสงค์ในการทำงาน จะใช้ฐานข้อมูลแยกกันตามจุดประสงค์นั้นๆ แต่ละส่วนทำงานด้วยตัวเอง แต่ละส่วนคุยกันผ่าน API
 
 ประโยชน์
-1. แก้ไขปัญหาการทับซ้อยของ Application
+1. แก้ไขปัญหาการทับซ้อนของ Application
 2. อิสระต่อการเลือก service
 3. Deploy เป็นอิสระ ไม่ต้องรอ service อื่น
+
+ข้อเสีย
+1. มีความช้าในการติดต่อของแต่ละส่วนหากัน
+2. การ Deploy ต้องมีตัว auto เพราะแต่ละตัวอยู่แยกกัน
       
-อ้างอิง https://www.softnix.co.th/2018/07/13/%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B9%81%E0%B8%95%E0%B8%81%E0%B8%95%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87-microservices-%E0%B9%81%E0%B8%A5%E0%B8%B0-mono/
+อ้างอิง 
+- https://www.softnix.co.th/2018/07/13/%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B9%81%E0%B8%95%E0%B8%81%E0%B8%95%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87-microservices-%E0%B9%81%E0%B8%A5%E0%B8%B0-mono/
+- https://blog.skooldio.com/microservices-vs-monolithic/
      
 # 4. Proxmox 
-แพลตฟอร์มในการจัดการเซิร์ฟเวอร์โอเพ่นซอร์สที่สมบูรณ์สำหรับการจำลองเสมือน รองรับ REST API ผู้ดูแลจัดการทั้งหมดได้ด้วยอินเตอร์เฟซผู้ใช้แบบกราฟิก RAM สูงสุด 12TB และ CPU ตรรกะ 768 ตัวต่อโฮสต์ เป็นการกระจาย Linux ที่ใช้ Debian พร้อมเคอร์เนล Ubuntu LTS ที่ได้รับการแก้ไข เพื่อช่วยปรับใช้และจัดการ VM และ Container ได้ เช่น KVM(VM แบบเคอร์เนล) สำหรับ VM และ Linux Containers(LXC) สำหรับ Container เป็นเครื่องมือจำลองระดับ OS เครื่องมือมากมาย การจัดการบนเว็บ จัดการคลัสเตอร์ข้ามโหนดเซิร์ฟเวอร์หลายเครื่องเพื่อความพร้อมใช้งาน และจะจัดการตรวจสอบทุก VM มีคุณสมบัติในการโยกย้ายแบบออนไลน์ ย้ายโดยไม่ต้องหยุดทำงาน มีไฟร์วอลล์ในตัวที่ปรับแต่งได้เพื่อให้กำหนดค่าผ่าน GUI หรือ CLI โดยสามารถตั้งค่ากฎไฟร์วอลล์สำหรับโฮสต์ทั้งหมดภายในคลัสเตอร์หรือกำหนดกฎสำหรับ VM และคอนเทนเนอร์เท่านั้น
+ระบบปฏิบัติการสำหรับจัดการ VM แบบ Hyper-V type 1 ผสานรวม KVM Hypervisor และ LXC ใช้การจัดเก็บข้อมูล ฟังก์ชัน บนแพลตฟอร์มเดียว ควบคุมผ่านเว็บอินเตอร์เฟรช ใช้งานง่าย ลดค่าใช้จ่ายที่ไม่จำเป็น เป็นระบบที่คล้ายกับ ESXi ของ VMware
     
-อ้างอิง https://www.quickserv.co.th/knowledge-base/technology/VMware-vSphere-%e0%b8%81%e0%b8%b1%e0%b8%9a-Proxmox-%e0%b8%aa%e0%b8%b3%e0%b8%ab%e0%b8%a3%e0%b8%b1%e0%b8%9a%e0%b8%98%e0%b8%b8%e0%b8%a3%e0%b8%81%e0%b8%b4%e0%b8%88-%e0%b9%83%e0%b8%8a%e0%b9%89%e0%b9%81%e0%b8%9a%e0%b8%9a%e0%b9%84%e0%b8%ab%e0%b8%99%e0%b8%94%e0%b8%b5%e0%b8%97%e0%b8%b5%e0%b9%88%e0%b8%aa%e0%b8%b8%e0%b8%94/
+อ้างอิง 
+- https://www.quickserv.co.th/knowledge-base/technology/VMware-vSphere-%e0%b8%81%e0%b8%b1%e0%b8%9a-Proxmox-%e0%b8%aa%e0%b8%b3%e0%b8%ab%e0%b8%a3%e0%b8%b1%e0%b8%9a%e0%b8%98%e0%b8%b8%e0%b8%a3%e0%b8%81%e0%b8%b4%e0%b8%88-%e0%b9%83%e0%b8%8a%e0%b9%89%e0%b9%81%e0%b8%9a%e0%b8%9a%e0%b9%84%e0%b8%ab%e0%b8%99%e0%b8%94%e0%b8%b5%e0%b8%97%e0%b8%b5%e0%b9%88%e0%b8%aa%e0%b8%b8%e0%b8%94/
+- https://www.bestinternet.co.th/single_blog.php?id=96&proxmox%20virtual%20environment%20%E0%B8%AB%E0%B8%A3%E0%B8%B7%E0%B8%AD%20proxmox%20ve%20(pve)%20%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3
+- https://netway.co.th/kb/blog/cloud-managed-services/%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99-server-%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%84%E0%B8%B8%E0%B9%89%E0%B8%A1%E0%B8%84%E0%B9%88%E0%B8%B2%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3-virtualization%E2%80%8B
+- https://yourconnect.com/proxmox/ve/
+- https://www.proen.cloud/en/blogs/proxmox-virtual-environment/
+- https://blog.limitrack.com/proxmox-basic/
+- https://kirz.com/EN/blog-detail/Proxmox-VE-Hypervisor-%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88-Cloud-Service-Provider-%E0%B8%95%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%8A%E0%B9%89
 
 # 5. Ceph 
 เป็นระบบ distributed storage ทำงานบน cluster ของ computer node มี 3 node
