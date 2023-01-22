@@ -61,23 +61,23 @@
 - https://kirz.com/EN/blog-detail/Proxmox-VE-Hypervisor-%E0%B8%97%E0%B8%A3%E0%B8%87%E0%B8%9E%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%97%E0%B8%B5%E0%B9%88-Cloud-Service-Provider-%E0%B8%95%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B9%80%E0%B8%A5%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B9%83%E0%B8%8A%E0%B9%89
 
 # 5. Ceph 
-เป็นระบบ distributed storage ทำงานบน cluster ของ computer node มี 3 node
-    1. monitor ดูแลระบบ cluster
-    2. OSD อ่าน/เขียน ตามคำสั่ง
-    3. MDS ดูแลสถานะของ file hierarchy
-Ceph ทำงานบน cluster ที่แต่ละ Node ทำหน้าต่างกันอย่างชัดเจน ทำให้จัดการได้สะดวก workload ถูกกระจายอย่างเหมาะสม ลดความเสี่ยงจาก System failure และทำให้ scale ได้ง่าย และไม่ต้องการ hardware แบบพิเศษ
+เป็น Storage Open source ที่มีความหยืดหยุนสูง จัดการข้อมูลแบบออบเจ็กต์ มีความรวดเร็ว ทำงานบน Cluster ของแต่ละ Node ในเครื่องคอมพิวเตอร์
+มีส่วนประกอบ
+1.	MON ดูแลสถานะ Ceph cluster
+2.	OSD เก็บข้อมูลของระบบ
+3.	MDS ทำหน้าที่ดูแลสถานะ file hierarchy
 
-มี 3 Interface
-1. Ceph Object Storage รองรับ Amazon S3 และ OpenStack Swift protocol สามารถทำงานร่วมกับ application ที่รองรับ protocol เหล่านั้น
-2. Ceph Block Storage  รองรับการทำงานในลักษณะที่คล้ายกับ SAN (Storage Area Network)
-3. Ceph File System Storage รองรับการทำงานในลักษณะคล้าย NAS คือ ผู้ใช้สามารถสร้าง CephFS ขึ้นมาใน Ceph Storage แล้ว mount ไปใช้งานยังเครื่องปลายทางได้เช่นเดียวกับ NAS ทั่วไปโดยใช้งานผ่าน CephFS Gateway
-
-อ้างอิง https://www.throughwave.co.th/2017/04/10/%E0%B9%81%E0%B8%99%E0%B8%B0%E0%B8%99%E0%B8%B3-ceph-storage-distributed-storage-%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88/
+อ้างอิง 
+- https://www.throughwave.co.th/2017/04/10/%E0%B9%81%E0%B8%99%E0%B8%B0%E0%B8%99%E0%B8%B3-ceph-storage-distributed-storage-%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88/
+- https://www.clusterkit.co.th/blogs/ceph-storage/
+- https://blog.metrabyte.cloud/ceph-software-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3-%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%9A%E0%B8%AA%E0%B8%B3%E0%B8%A3%E0%B8%AD%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1/
+- https://www.bestinternet.co.th/single_blog.php?id=47&ceph%20storage%20%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3
+- https://www.colo.in.th/knowledgebase/53/-Ceph-Storage--Centos-7.html
 
 # 6. NFS 
-เป็น Protocol ที่ช่วยให้ computer แชร์ข้อมูลผ่าน network ได้ มีการพัฒนาและนำมาใช้งานใน ปี ค.ศ.1984 โครงสร้างเป็น Server และ Client ทำให้ computer ใน network เดียวกันเข้าถึงข้อมูลได้ โดยฝั่ง server สามารถตั้งค่าได้ว่า ไฟล์ไหนสามารถแชร์หากันได้ ฝั่ง client ต้อง mount ไฟล์ผ่าน network โดยใช้คำสั่ง mount ทำให้มุมมองฝั่งที่ mount ผ่าน Network ด้วย NFS ให้ความรู้สึกว่าใช้ไฟล์จากเครื่องตัวเอง
+เป็น โปรโตคอล ในการแชร์ไฟล์ผ่านเน็ตเวิร์คเดียวกัน จะเป็นการเชื่อมในรูปแบบ server กับ client ใน Local network เดียวกัน โดยผู้ดูแลจะตั้งค่าว่าไฟล์ไหนจะทำการแชร์ผ่านได้ และเครื่อง client ก็จะทำ mount เข้าไปในไฟล์นั้น ให้ความรู้สึกเหมือนทำงานในเครื่องตัวเอง โดยจะเกิดการ sync ข้อมูลกันตลอดเวลา ทำให้หากมีการ mount หลายเครื่องและแก้ไข เครื่องทุกเครื่องที่ mount จะเห็นการเปลี่ยนแปลงด้วย ทำให้ใช้บริการที่สะดวกสบายในการเข้าถึงไฟล์หากันภายใน Local network
 
-หลังจากที่มีการแชร์ผ่านทาง Network ไปแล้ว NFS daemons ที่อยู่ทั้งฝั่ง Server และ Client จะทำการ Sync ข้อมูลระหว่าง Device อยู่ตลอดเวลา หากมีการเปลี่ยนแปลง เครื่องที่ mount อยู่ จะเห็นการเปลี่ยนแปลงไปด้วย ทางเทคนิค NFS จะใช้แชร์ไฟล์กันในเฉพาะ Local Network แชร์ผ่าน Internet จะยาก เพราะไม่รองรับการแชร์ผ่าน Routing ที่มีความซับซ้อน หรือการทำ NAT ก็คือ NFS 
-
-อ้างอิง https://blog.cloudhm.co.th/nfs-vs-smb/
+อ้างอิง 
+- https://blog.cloudhm.co.th/nfs-vs-smb/
+- https://www.mindphp.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD/73-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3/2170-nfs-%E0%B8%84%E0%B8%B7%E0%B8%AD%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%A3.html
                       
